@@ -1000,16 +1000,120 @@ function finishQuiz(){
 
   stopTimer();
 
-  let score=0;
+  let correct = 0;
+  let incorrect = 0;
+  let unanswered = 0;
 
   currentQuestions.forEach((q,index)=>{
-    if(selectedAnswers[index]===q.answer){
-      score++;
+
+    if(selectedAnswers[index] === null){
+      unanswered++;
     }
+    else if(selectedAnswers[index] === q.answer){
+      correct++;
+    }
+    else{
+      incorrect++;
+    }
+
   });
 
-  const percentage=
-    Math.round(score/currentQuestions.length*100);
+  // 1 mark for correct answer
+  // 0.20 mark deducted for incorrect answer
+  // 0 mark for unanswered question
+
+  const marksObtained =
+    correct - (incorrect * 0.20);
+
+  const totalMarks = currentQuestions.length;
+
+  const percentage =
+    (marksObtained / totalMarks) * 100;
+
+  hideAll();
+
+  document.getElementById("resultSection").classList.remove("hidden");
+
+  document.getElementById("scoreText").textContent =
+    `${marksObtained.toFixed(2)} / ${totalMarks}`;
+
+  document.getElementById("percentageText").textContent =
+    `Percentage: ${percentage.toFixed(2)}%`;
+
+  document.getElementById("resultMessage").textContent =
+    `Correct: ${correct} | Incorrect: ${incorrect} | Unanswered: ${unanswered}`;
+
+  const review = document.getElementById("review");
+
+  review.innerHTML = "";
+
+  currentQuestions.forEach((q,index)=>{
+
+    const correctAnswer =
+      selectedAnswers[index] === q.answer;
+
+    const unanswered =
+      selectedAnswers[index] === null;
+
+    const item = document.createElement("div");
+
+    item.className =
+      "review-item " +
+      (correctAnswer ? "correct" : "wrong");
+
+    const yourAnswer =
+      unanswered
+        ? "Not answered"
+        : q.options[selectedAnswers[index]];
+
+    const marks =
+      unanswered
+        ? "0"
+        : correctAnswer
+          ? "+1"
+          : "-0.20";
+
+    item.innerHTML = `
+      <strong>${index+1}. ${escapeHTML(q.q)}</strong><br>
+
+      ${correctAnswer
+        ? "✅ Correct"
+        : unanswered
+          ? "⚪ Unanswered"
+          : "❌ Incorrect"
+      }
+
+      <br>
+
+      Your answer:
+      ${escapeHTML(yourAnswer)}
+
+      <br>
+
+      Correct answer:
+      ${escapeHTML(q.options[q.answer])}
+
+      <br>
+
+      Marks:
+      <strong>${marks}</strong>
+
+      <br>
+
+      <span class="small">
+        ${escapeHTML(q.explanation)}
+      </span>
+    `;
+
+    review.appendChild(item);
+
+  });
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+}
 
   hideAll();
 
