@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Medical Entrance practice questions - Biology and Physics.">
+<title>Medical Entrance Prep Nepal</title>
+
+<style>
+:root{
+  --primary:#1769aa;
+  --primary-dark:#0d4f82;
+  --accent:#16a085;
+  --bg:#f5f7fa;
+  --card:#ffffff;
+  --text:#1f2937;
+  --muted:#6b7280;
+  --border:#d9e1ea;
+  --success:#16803c;
+  --danger:#d62828;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
+
+button{
+  font:inherit;
+}
+
+.container{
+  width:min(1120px,94%);
+  margin:auto;
+}
+
+/* HEADER */
+header{
+  background:linear-gradient(135deg,var(--primary-dark),var(--primary));
+  color:white;
+  box-shadow:0 3px 12px rgba(0,0,0,.12);
+}
+
+.topbar{
+  min-height:62px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.logo{
+  font-size:1.25rem;
+  font-weight:800;
+}
+
+.nav button{
+  background:transparent;
+  color:white;
+  border:0;
+  padding:9px 12px;
+  cursor:pointer;
+  border-radius:6px;
+}
+
+.nav button:hover{
+  background:rgba(255,255,255,.14);
+}
+
+.hero{
+  text-align:center;
+  padding:48px 15px 55px;
+}
+
+.hero h1{
+  margin:0 0 8px;
+  font-size:clamp(2rem,5vw,3rem);
+}
+
+.hero p{
+  margin:0 auto;
+  max-width:700px;
+  color:#e5eff8;
+}
+
+/* MAIN */
+main{
+  padding:35px 0 55px;
+}
+
+.hidden{
+  display:none!important;
+}
+
+.section-title{
+  text-align:center;
+  margin-bottom:25px;
+}
+
+.section-title h2{
+  margin:0 0 5px;
+}
+
+.section-title p{
+  margin:0;
+  color:var(--muted);
+}
+
+/* SUBJECTS */
+.subject-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:22px;
+  max-width:850px;
+  margin:auto;
+}
+
+.subject-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:28px;
+  text-align:center;
+  box-shadow:0 5px 18px rgba(15,23,42,.06);
+}
+
+.subject-icon{
+  font-size:2.8rem;
+}
+
+.subject-card h3{
+  margin:12px 0 5px;
+  font-size:1.4rem;
+}
+
+.subject-card p{
+  color:var(--muted);
+  min-height:48px;
+}
+
+.btn{
+  border:0;
+  border-radius:7px;
+  padding:11px 17px;
+  cursor:pointer;
+  font-weight:700;
+}
+
+.btn-primary{
+  background:var(--primary);
+  color:white;
+}
+
+.btn-primary:hover{
+  background:var(--primary-dark);
+}
+
+.btn-secondary{
+  background:#e9eef5;
+  color:var(--text);
+}
+
+.btn-danger{
+  background:#fee2e2;
+  color:#991b1b;
+}
+
+/* CHAPTERS */
+.chapter-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:15px;
+}
+
+.chapter-card{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:18px;
+}
+
+.chapter-card h3{
+  margin:0 0 7px;
+}
+
+.chapter-card p{
+  color:var(--muted);
+  font-size:.92rem;
+  margin:0 0 13px;
+}
+
+/* QUIZ */
+.quiz-panel{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:24px;
+  box-shadow:0 5px 18px rgba(15,23,42,.06);
+}
+
+.quiz-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  flex-wrap:wrap;
+}
+
+.timer{
+  background:#fff4e5;
+  color:#9a5300;
+  padding:8px 13px;
+  border-radius:6px;
+  font-weight:800;
+}
+
+.progress-wrap{
+  height:8px;
+  background:#e7ebef;
+  border-radius:99px;
+  overflow:hidden;
+  margin:20px 0;
+}
+
+.progress{
+  width:0;
+  height:100%;
+  background:var(--accent);
+}
+
+.question-no{
+  color:var(--muted);
+  font-weight:700;
+}
+
+.question{
+  font-size:1.2rem;
+  font-weight:700;
+  margin:8px 0 20px;
+}
+
+.options{
+  display:grid;
+  gap:11px;
+}
+
+.option{
+  width:100%;
+  text-align:left;
+  background:white;
+  border:2px solid var(--border);
+  border-radius:8px;
+  padding:13px 15px;
+  cursor:pointer;
+}
+
+.option:hover{
+  border-color:#8ab9dd;
+  background:#f7fbff;
+}
+
+.option.selected{
+  border-color:var(--primary);
+  background:#eaf4fc;
+}
+
+.quiz-actions{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  margin-top:24px;
+}
+
+/* RESULT */
+.result{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:30px;
+  text-align:center;
+}
+
+.score{
+  font-size:3.2rem;
+  font-weight:900;
+  color:var(--primary);
+}
+
+.review{
+  margin-top:25px;
+  text-align:left;
+  display:grid;
+  gap:10px;
+}
+
+.review-item{
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:13px;
+}
+
+.review-item.correct{
+  border-left:5px solid var(--success);
+}
+
+.review-item.wrong{
+  border-left:5px solid var(--danger);
+}
+
+.small{
+  color:var(--muted);
+  font-size:.9rem;
+}
+
+footer{
+  background:#17202b;
+  color:#cbd5e1;
+  text-align:center;
+  padding:25px 0;
+}
+
+footer p{
+  margin:4px;
+}
+
+/* MOBILE */
+@media(max-width:700px){
+  .topbar{
+    flex-direction:column;
+    padding:12px 0;
+    gap:8px;
+  }
+
+  .subject-grid{
+    grid-template-columns:1fr;
+  }
+
+  .hero{
+    padding:38px 10px 45px;
+  }
+
+  .quiz-actions{
+    flex-direction:column;
+  }
+
+  .quiz-actions .btn{
+    width:100%;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="container">
+
+    <div class="topbar">
+      <div class="logo">🩺 Medical Entrance Prep Nepal</div>
+
+      <div class="nav">
+        <button onclick="showHome()">Home</button>
+        <button onclick="showSubjects()">Subjects</button>
+      </div>
+    </div>
+
+    <div class="hero">
+      <h1>Medical Entrance Preparation</h1>
+      <p>Practice Biology and Physics MCQs with chapter-wise tests, a timer and automatic results.</p>
+    </div>
+
+  </div>
+</header>
+
+<main class="container">
+
+<!-- HOME -->
+<section id="home">
+
+  <div class="section-title">
+    <h2>Choose Your Subject</h2>
+    <p>Select a subject to begin your preparation.</p>
+  </div>
+
+  <div class="subject-grid">
+
+    <div class="subject-card">
+      <div class="subject-icon">🧬</div>
+      <h3>Biology</h3>
+      <p>Chapter-wise Biology practice for medical entrance preparation.</p>
+      <button class="btn btn-primary" onclick="openChapters('biology')">
+        Biology
+      </button>
+    </div>
+
+    <div class="subject-card">
+      <div class="subject-icon">⚛️</div>
+      <h3>Physics</h3>
+      <p>Chapter-wise Physics practice for medical entrance preparation.</p>
+      <button class="btn btn-primary" onclick="openChapters('physics')">
+        Physics
+      </button>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- CHAPTERS -->
+<section id="chapters" class="hidden">
+
+  <button class="btn btn-secondary" onclick="showHome()">← Back</button>
+
+  <div class="section-title">
+    <h2 id="chapterTitle">Chapters</h2>
+    <p>Choose a chapter to start practicing.</p>
+  </div>
+
+  <div id="chapterGrid" class="chapter-grid"></div>
+
+</section>
+
+
+<!-- QUIZ -->
+<section id="quizSection" class="hidden">
+
+  <div class="quiz-panel">
+
+    <div class="quiz-header">
+
+      <button class="btn btn-secondary" onclick="leaveQuiz()">
+        ← Exit Test
+      </button>
+
+      <strong id="quizTitle"></strong>
+
+      <div class="timer">
+        ⏱ <span id="timer">05:00</span>
+      </div>
+
+    </div>
+
+    <div class="progress-wrap">
+      <div class="progress" id="progress"></div>
+    </div>
+
+    <div class="question-no" id="questionNumber"></div>
+
+    <div class="question" id="questionText"></div>
+
+    <div class="options" id="options"></div>
+
+    <div class="quiz-actions">
+
+      <button class="btn btn-secondary"
+              id="previousBtn"
+              onclick="previousQuestion()">
+        ← Previous
+      </button>
+
+      <button class="btn btn-primary"
+              id="nextBtn"
+              onclick="nextQuestion()">
+        Next →
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- RESULT -->
+<section id="resultSection" class="hidden">
+
+  <div class="result">
+
+    <button class="btn btn-secondary" onclick="showHome()">
+      ← Home
+    </button>
+
+    <h2>Test Completed 🎉</h2>
+
+    <div class="score" id="scoreText">0/0</div>
+
+    <p id="percentageText"></p>
+
+    <p id="resultMessage"></p>
+
+    <div class="review" id="review"></div>
+
+    <br>
+
+    <button class="btn btn-primary" onclick="restartQuiz()">
+      Try Again
+    </button>
+
+    <button class="btn btn-secondary" onclick="showSubjects()">
+      Choose Subject
+    </button>
+
+  </div>
+
+</section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <p><strong>Medical Entrance Prep Nepal</strong></p>
+    <p>Free educational practice platform.</p>
+    <p class="small">Questions can be expanded chapter by chapter.</p>
+  </div>
+</footer>
+
+
+<script>
+
+/*
+============================================================
+MEDICAL ENTRANCE QUESTION BANK
+BIOLOGY + PHYSICS ONLY
+============================================================
+
+To add a question:
+
+{
+  q: "Your question?",
+  options: [
+    "Option A",
+    "Option B",
+    "Option C",
+    "Option D"
+  ],
+  answer: 2,
+  explanation: "Explanation."
+}
+
+answer:
+0 = A
+1 = B
+2 = C
+3 = D
+
+============================================================
+*/
+
+const questionBank = {
+
+  biology_cell: {
+    title:"Biology — Cell Biology",
+    questions:[
+      {
+        q:"The basic structural and functional unit of life is:",
+        options:["Tissue","Organ","Cell","Organ system"],
+        answer:2,
+        explanation:"The cell is the basic structural and functional unit of living organisms."
+      },
+      {
+        q:"Which organelle is commonly known as the powerhouse of the cell?",
+        options:["Nucleus","Ribosome","Mitochondrion","Golgi apparatus"],
+        answer:2,
+        explanation:"Mitochondria produce most cellular ATP through aerobic respiration."
+      },
+      {
+        q:"Which structure controls many activities of a eukaryotic cell?",
+        options:["Cell wall","Nucleus","Vacuole","Lysosome"],
+        answer:1,
+        explanation:"The nucleus contains genetic material and regulates many cellular activities."
+      },
+      {
+        q:"Ribosomes are primarily involved in:",
+        options:["Lipid storage","Protein synthesis","DNA replication","Photosynthesis"],
+        answer:1,
+        explanation:"Ribosomes are the sites of protein synthesis."
+      },
+      {
+        q:"Which organelle contains digestive enzymes?",
+        options:["Lysosome","Centrosome","Nucleolus","Chloroplast"],
+        answer:0,
+        explanation:"Lysosomes contain hydrolytic enzymes involved in intracellular digestion."
+      }
+    ]
+  },
+
+  biology_plant: {
+    title:"Biology — Plant Biology",
+    questions:[
+      {
+        q:"Which tissue transports water and minerals in vascular plants?",
+        options:["Phloem","Xylem","Epidermis","Collenchyma"],
+        answer:1,
+        explanation:"Xylem transports water and mineral nutrients."
+      },
+      {
+        q:"Photosynthesis mainly occurs in:",
+        options:["Mitochondria","Chloroplasts","Nuclei","Ribosomes"],
+        answer:1,
+        explanation:"Chloroplasts contain chlorophyll and are the main sites of photosynthesis."
+      },
+      {
+        q:"The pollen-producing part of a typical stamen is the:",
+        options:["Filament","Anther","Stigma","Ovary"],
+        answer:1,
+        explanation:"The anther produces pollen grains."
+      },
+      {
+        q:"Which tissue transports organic food in plants?",
+        options:["Xylem","Phloem","Sclerenchyma","Epidermis"],
+        answer:1,
+        explanation:"Phloem transports sugars and other organic nutrients."
+      },
+      {
+        q:"The opening through which gaseous exchange occurs in many leaves is the:",
+        options:["Lenticel","Stoma","Root hair","Trichome"],
+        answer:1,
+        explanation:"Stomata are pores that regulate gas exchange and water loss."
+      }
+    ]
+  },
+
+  biology_human: {
+    title:"Biology — Human Physiology",
+    questions:[
+      {
+        q:"Which blood cells primarily transport oxygen?",
+        options:["Platelets","Red blood cells","White blood cells","Lymphocytes"],
+        answer:1,
+        explanation:"Red blood cells contain hemoglobin, which transports oxygen."
+      },
+      {
+        q:"Which organ pumps blood throughout the body?",
+        options:["Liver","Heart","Kidney","Lung"],
+        answer:1,
+        explanation:"The heart pumps blood through the circulatory system."
+      },
+      {
+        q:"Which enzyme begins protein digestion in the stomach?",
+        options:["Amylase","Pepsin","Trypsin","Maltase"],
+        answer:1,
+        explanation:"Pepsin is an important proteolytic enzyme active in the stomach."
+      },
+      {
+        q:"The functional unit of the kidney is the:",
+        options:["Neuron","Nephron","Alveolus","Villus"],
+        answer:1,
+        explanation:"The nephron is the functional unit of the kidney."
+      },
+      {
+        q:"Which hormone lowers blood glucose concentration?",
+        options:["Adrenaline","Insulin","Thyroxine","Glucagon"],
+        answer:1,
+        explanation:"Insulin promotes glucose uptake and storage, lowering blood glucose."
+      }
+    ]
+  },
+
+  biology_genetics: {
+    title:"Biology — Genetics",
+    questions:[
+      {
+        q:"The hereditary material in most organisms is:",
+        options:["Protein","DNA","Lipid","Carbohydrate"],
+        answer:1,
+        explanation:"DNA is the hereditary material in most organisms."
+      },
+      {
+        q:"Which nitrogenous base is present in RNA instead of thymine?",
+        options:["Adenine","Uracil","Guanine","Cytosine"],
+        answer:1,
+        explanation:"RNA contains uracil instead of thymine."
+      },
+      {
+        q:"Mitosis generally produces:",
+        options:["Four genetically different cells","Two genetically similar daughter cells","Two gametes","One cell"],
+        answer:1,
+        explanation:"Mitosis normally produces two daughter cells with essentially the same chromosome complement."
+      },
+      {
+        q:"A segment of DNA that carries information for a functional product is called a:",
+        options:["Gene","Ribosome","Centromere only","Lipid"],
+        answer:0,
+        explanation:"A gene is a DNA sequence associated with a functional product."
+      },
+      {
+        q:"The process by which DNA makes a copy of itself is:",
+        options:["Translation","Transcription","Replication","Translocation"],
+        answer:2,
+        explanation:"DNA replication produces a copy of the DNA molecule."
+      }
+    ]
+  },
+
+  physics_mechanics: {
+    title:"Physics — Mechanics",
+    questions:[
+      {
+        q:"The SI unit of force is:",
+        options:["Joule","Watt","Newton","Pascal"],
+        answer:2,
+        explanation:"Force is measured in newtons (N)."
+      },
+      {
+        q:"Which of the following is a scalar quantity?",
+        options:["Velocity","Displacement","Speed","Force"],
+        answer:2,
+        explanation:"Speed has magnitude only and is therefore scalar."
+      },
+      {
+        q:"Acceleration due to gravity near Earth's surface is approximately:",
+        options:["1.8 m/s²","4.9 m/s²","9.8 m/s²","98 m/s²"],
+        answer:2,
+        explanation:"The commonly used approximate value is 9.8 m/s²."
+      },
+      {
+        q:"The SI unit of work is:",
+        options:["Newton","Joule","Watt","Pascal"],
+        answer:1,
+        explanation:"Work is measured in joules (J)."
+      },
+      {
+        q:"Power is the rate of doing:",
+        options:["Force","Work","Mass","Momentum"],
+        answer:1,
+        explanation:"Power is the rate at which work is done."
+      }
+    ]
+  },
+
+  physics_electricity: {
+    title:"Physics — Electricity",
+    questions:[
+      {
+        q:"Which instrument measures electric current?",
+        options:["Voltmeter","Ammeter","Barometer","Galvanometer only"],
+        answer:1,
+        explanation:"An ammeter is used to measure electric current."
+      },
+      {
+        q:"Ohm's law is expressed as:",
+        options:["P=VI","V=IR","F=ma","E=mc²"],
+        answer:1,
+        explanation:"Ohm's law states V = IR for an ohmic conductor under appropriate conditions."
+      },
+      {
+        q:"The SI unit of electrical resistance is:",
+        options:["Volt","Ampere","Ohm","Coulomb"],
+        answer:2,
+        explanation:"Resistance is measured in ohms (Ω)."
+      },
+      {
+        q:"The SI unit of electric charge is:",
+        options:["Coulomb","Joule","Watt","Tesla"],
+        answer:0,
+        explanation:"Electric charge is measured in coulombs (C)."
+      },
+      {
+        q:"Electrical power can be expressed as:",
+        options:["P=VI","P=IR only","P=F/a","P=m/v"],
+        answer:0,
+        explanation:"Electrical power is P = VI."
+      }
+    ]
+  },
+
+  physics_optics: {
+    title:"Physics — Optics",
+    questions:[
+      {
+        q:"Which type of lens is generally used to correct myopia?",
+        options:["Convex lens","Concave lens","Plane glass","Cylindrical lens only"],
+        answer:1,
+        explanation:"A concave lens diverges light and is used to correct myopia."
+      },
+      {
+        q:"The speed of light in vacuum is approximately:",
+        options:["3×10⁶ m/s","3×10⁸ m/s","3×10¹⁰ m/s","3×10⁴ m/s"],
+        answer:1,
+        explanation:"The speed of light in vacuum is approximately 3×10⁸ m/s."
+      },
+      {
+        q:"A convex lens is also called a:",
+        options:["Diverging lens","Converging lens","Plane lens","Reflecting lens"],
+        answer:1,
+        explanation:"A convex lens generally converges parallel rays of light."
+      },
+      {
+        q:"The splitting of white light into its component colours is called:",
+        options:["Reflection","Refraction","Dispersion","Diffraction"],
+        answer:2,
+        explanation:"Dispersion separates white light into different wavelengths or colours."
+      },
+      {
+        q:"The SI unit of focal length is:",
+        options:["Metre","Dioptre","Hertz","Newton"],
+        answer:0,
+        explanation:"Focal length is a length and its SI unit is metre."
+      }
+    ]
+  }
+
+};
+
+
+const chapters = {
+  biology:[
+    ["biology_cell","Cell Biology","Cell structure, organelles and cell division"],
+    ["biology_plant","Plant Biology","Plant tissues, anatomy and plant processes"],
+    ["biology_human","Human Physiology","Human body systems and functions"],
+    ["biology_genetics","Genetics","DNA, genes, cell division and heredity"]
+  ],
+  physics:[
+    ["physics_mechanics","Mechanics","Motion, force, work, energy and power"],
+    ["physics_electricity","Electricity","Current, voltage, resistance and power"],
+    ["physics_optics","Optics","Light, lenses, mirrors and optical phenomena"]
+  ]
+};
+
+
+let currentQuizKey="";
+let currentQuestions=[];
+let currentIndex=0;
+let selectedAnswers=[];
+let timerSeconds=300;
+let timerInterval=null;
+
+
+function hideAll(){
+  document.querySelectorAll("main section")
+    .forEach(section=>section.classList.add("hidden"));
+}
+
+
+function showHome(){
+  stopTimer();
+  hideAll();
+  document.getElementById("home").classList.remove("hidden");
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+
+function showSubjects(){
+  stopTimer();
+  hideAll();
+  document.getElementById("home").classList.remove("hidden");
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+
+function openChapters(subject){
+
+  stopTimer();
+  hideAll();
+
+  document.getElementById("chapters").classList.remove("hidden");
+
+  const title=document.getElementById("chapterTitle");
+  const grid=document.getElementById("chapterGrid");
+
+  title.textContent=subject==="biology"
+    ?"Biology Chapters"
+    :"Physics Chapters";
+
+  grid.innerHTML="";
+
+  chapters[subject].forEach(chapter=>{
+
+    const card=document.createElement("div");
+    card.className="chapter-card";
+
+    card.innerHTML=`
+      <h3>${chapter[1]}</h3>
+      <p>${chapter[2]}</p>
+      <button class="btn btn-primary"
+              onclick="startQuiz('${chapter[0]}')">
+        Start Practice
+      </button>
+    `;
+
+    grid.appendChild(card);
+  });
+
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+
+function startQuiz(key){
+
+  const data=questionBank[key];
+
+  if(!data || !data.questions.length){
+    alert("No questions are available for this chapter yet.");
+    return;
+  }
+
+  currentQuizKey=key;
+  currentQuestions=data.questions;
+  currentIndex=0;
+  selectedAnswers=new Array(currentQuestions.length).fill(null);
+
+  timerSeconds=300;
+
+  hideAll();
+  document.getElementById("quizSection").classList.remove("hidden");
+
+  document.getElementById("quizTitle").textContent=data.title;
+
+  startTimer();
+  renderQuestion();
+
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+
+function renderQuestion(){
+
+  const q=currentQuestions[currentIndex];
+
+  document.getElementById("questionNumber").textContent=
+    `Question ${currentIndex+1} of ${currentQuestions.length}`;
+
+  document.getElementById("questionText").textContent=q.q;
+
+  const options=document.getElementById("options");
+  options.innerHTML="";
+
+  q.options.forEach((option,index)=>{
+
+    const button=document.createElement("button");
+
+    button.className="option";
+    button.type="button";
+    button.textContent=
+      `${String.fromCharCode(65+index)}. ${option}`;
+
+    if(selectedAnswers[currentIndex]===index){
+      button.classList.add("selected");
+    }
+
+    button.onclick=()=>selectAnswer(index);
+
+    options.appendChild(button);
+  });
+
+  document.getElementById("previousBtn").disabled=
+    currentIndex===0;
+
+  document.getElementById("nextBtn").textContent=
+    currentIndex===currentQuestions.length-1
+      ?"Submit Test ✓"
+      :"Next →";
+
+  document.getElementById("progress").style.width=
+    `${((currentIndex+1)/currentQuestions.length)*100}%`;
+}
+
+
+function selectAnswer(index){
+  selectedAnswers[currentIndex]=index;
+  renderQuestion();
+}
+
+
+function nextQuestion(){
+
+  if(selectedAnswers[currentIndex]===null){
+
+    const proceed=confirm(
+      "You have not selected an answer. Continue anyway?"
+    );
+
+    if(!proceed)return;
+  }
+
+  if(currentIndex<currentQuestions.length-1){
+    currentIndex++;
+    renderQuestion();
+  }
+  else{
+    finishQuiz();
+  }
+}
+
+
+function previousQuestion(){
+
+  if(currentIndex>0){
+    currentIndex--;
+    renderQuestion();
+  }
+}
+
+
+function finishQuiz(){
+
+  stopTimer();
+
+  let score=0;
+
+  currentQuestions.forEach((q,index)=>{
+    if(selectedAnswers[index]===q.answer){
+      score++;
+    }
+  });
+
+  const percentage=
+    Math.round(score/currentQuestions.length*100);
+
+  hideAll();
+
+  document.getElementById("resultSection").classList.remove("hidden");
+
+  document.getElementById("scoreText").textContent=
+    `${score}/${currentQuestions.length}`;
+
+  document.getElementById("percentageText").textContent=
+    `Percentage: ${percentage}%`;
+
+  let message;
+
+  if(percentage>=80)
+    message="Excellent! Keep up the preparation. 🎉";
+  else if(percentage>=60)
+    message="Good performance. Continue practicing. 👍";
+  else if(percentage>=40)
+    message="Keep practicing and review the explanations. 📖";
+  else
+    message="Review the chapter and try the test again. 💪";
+
+  document.getElementById("resultMessage").textContent=message;
+
+  const review=document.getElementById("review");
+  review.innerHTML="";
+
+  currentQuestions.forEach((q,index)=>{
+
+    const correct=selectedAnswers[index]===q.answer;
+
+    const item=document.createElement("div");
+
+    item.className=
+      "review-item "+(correct?"correct":"wrong");
+
+    const yourAnswer=
+      selectedAnswers[index]===null
+        ?"Not answered"
+        :q.options[selectedAnswers[index]];
+
+    item.innerHTML=`
+      <strong>${index+1}. ${escapeHTML(q.q)}</strong><br>
+      ${correct?"✅ Correct":"❌ Incorrect"}<br>
+      Your answer: ${escapeHTML(yourAnswer)}<br>
+      Correct answer: ${escapeHTML(q.options[q.answer])}<br>
+      <span class="small">
+        ${escapeHTML(q.explanation)}
+      </span>
+    `;
+
+    review.appendChild(item);
+  });
+
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+
+function restartQuiz(){
+  startQuiz(currentQuizKey);
+}
+
+
+function leaveQuiz(){
+
+  if(confirm("Exit this test? Your current answers will be lost.")){
+    stopTimer();
+    showHome();
+  }
+}
+
+
+function startTimer(){
+
+  stopTimer();
+
+  updateTimer();
+
+  timerInterval=setInterval(()=>{
+
+    timerSeconds--;
+
+    updateTimer();
+
+    if(timerSeconds<=0){
+
+      stopTimer();
+
+      alert("Time is up. Your test will be submitted.");
+
+      finishQuiz();
+    }
+
+  },1000);
+}
+
+
+function stopTimer(){
+
+  if(timerInterval){
+    clearInterval(timerInterval);
+    timerInterval=null;
+  }
+}
+
+
+function updateTimer(){
+
+  const minutes=Math.floor(timerSeconds/60);
+  const seconds=timerSeconds%60;
+
+  document.getElementById("timer").textContent=
+    `${String(minutes).padStart(2,"0")}:${String(seconds).padStart(2,"0")}`;
+}
+
+
+function escapeHTML(value){
+
+  return String(value)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
+
+
+showHome();
+
+</script>
+
+</body>
+</html>
