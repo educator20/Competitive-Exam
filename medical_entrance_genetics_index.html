@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Medical Entrance Prep Nepal - Genetics (DNA)</title>
+<style>
+body{margin:0;font-family:Arial,sans-serif;background:#f5f7fa;color:#1f2937}
+header{background:linear-gradient(135deg,#0d4f82,#1769aa);color:#fff}
+.container{width:min(1050px,94%);margin:auto}.top{padding:20px 0;font-weight:800;font-size:1.2rem}
+.hero{text-align:center;padding:25px 15px 40px}.hero h1{font-size:clamp(2rem,5vw,3rem);margin:0 0 8px}
+main{padding:32px 0 55px}.hidden{display:none!important}
+.card,.quiz{background:#fff;border:1px solid #d9e1ea;border-radius:12px;padding:25px;box-shadow:0 5px 18px #0f172a0f}
+.card{max-width:720px;margin:auto}.center{text-align:center}
+.marking{background:#eef7ff;border:1px solid #c9e2f7;border-radius:9px;padding:14px;margin:18px 0}
+.name label{display:block;font-weight:700;margin-bottom:7px}.name input{width:100%;padding:12px;border:1px solid #d9e1ea;border-radius:7px;margin-bottom:18px}
+button{font:inherit;border:0;border-radius:7px;padding:11px 18px;cursor:pointer;font-weight:700}.primary{background:#1769aa;color:#fff}.secondary{background:#e9eef5;color:#1f2937}
+.quizhead{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.timer{background:#fff4e5;color:#9a5300;padding:8px 13px;border-radius:6px;font-weight:800}
+.progressbg{height:8px;background:#e7ebef;border-radius:99px;overflow:hidden;margin:20px 0}.progress{height:100%;background:#16a085;width:0}
+.qno{color:#6b7280;font-weight:700}.question{font-size:1.16rem;font-weight:700;line-height:1.5;margin:10px 0 20px}.options{display:grid;gap:11px}
+.option{width:100%;text-align:left;background:#fff;border:2px solid #d9e1ea}.option.selected{border-color:#1769aa;background:#eaf4fc}
+.actions{display:flex;justify-content:space-between;gap:10px;margin-top:24px}.result{text-align:center}.score{font-size:3rem;font-weight:900;color:#1769aa}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:20px 0}.stat{border:1px solid #d9e1ea;border-radius:8px;padding:13px}.stat strong{display:block;font-size:1.3rem}.stat span,.small{color:#6b7280;font-size:.9rem}
+.review{margin-top:25px;text-align:left;display:grid;gap:10px}.review-item{border:1px solid #d9e1ea;border-radius:8px;padding:14px;line-height:1.55}.correct{border-left:5px solid #16803c!important}.wrong{border-left:5px solid #d62828!important}.unanswered{border-left:5px solid #9ca3af!important}
+footer{background:#17202b;color:#cbd5e1;text-align:center;padding:25px 0}footer p{margin:4px}
+@media(max-width:650px){.stats{grid-template-columns:repeat(2,1fr)}.actions{flex-direction:column}.actions button{width:100%}}
+</style>
+</head>
+<body>
+<header><div class="container"><div class="top">🩺 Medical Entrance Prep Nepal</div><div class="hero"><h1>Genetics (DNA)</h1><p>Medical Entrance Practice Test</p></div></div></header>
+<main class="container">
+<section id="start"><div class="card">
+<h2>Genetics (DNA)</h2><p><b>Total questions:</b> 10 &nbsp; <b>Total marks:</b> 10</p>
+<div class="marking"><b>Marking Scheme</b><br><br>✅ Correct: <b>+1.00</b><br>❌ Incorrect: <b>−0.20</b> (20% negative marking)<br>⚪ Unanswered: <b>0.00</b></div>
+<div class="name"><label for="studentName">Student Name *</label><input id="studentName" placeholder="Enter your name" maxlength="100"></div>
+<div class="center"><button class="primary" onclick="startQuiz()">Start Test →</button></div>
+</div></section>
+<section id="quizSection" class="hidden"><div class="quiz">
+<div class="quizhead"><b id="studentDisplay"></b><b>Genetics (DNA)</b><div class="timer">⏱ <span id="timer">10:00</span></div></div>
+<div class="progressbg"><div class="progress" id="progress"></div></div>
+<div class="qno" id="questionNumber"></div><div class="question" id="questionText"></div><div class="options" id="options"></div>
+<div class="actions"><button class="secondary" id="prev" onclick="previousQuestion()">← Previous</button><button class="primary" id="next" onclick="nextQuestion()">Next →</button></div>
+</div></section>
+<section id="resultSection" class="hidden"><div class="card result">
+<h2>Test Completed 🎉</h2><p id="resultStudent"></p><div class="score" id="scoreText"></div><p id="percentageText"></p>
+<div class="stats"><div class="stat"><strong id="correctCount">0</strong><span>Correct</span></div><div class="stat"><strong id="incorrectCount">0</strong><span>Incorrect</span></div><div class="stat"><strong id="unansweredCount">0</strong><span>Unanswered</span></div><div class="stat"><strong id="negativeMarks">0.00</strong><span>Negative marks</span></div></div>
+<p id="resultMessage"></p><div class="review" id="review"></div><br><button class="primary" onclick="restartQuiz()">Try Again</button> <button class="secondary" onclick="goHome()">New Student</button>
+</div></section></main>
+<footer><div class="container"><p><b>Medical Entrance Prep Nepal</b></p><p>Genetics (DNA) Practice Test</p><p class="small">Correct: +1 | Incorrect: −0.20 | Unanswered: 0</p></div></footer>
+<script>
+const questions=[
+{q:"The length of DNA is usually defined as number of _______ present in it.",o:["hydrogen bonds","nucleotides","nucleosides","helices"],a:1,e:"DNA length is generally expressed by the number of nucleotide pairs/base pairs present in the molecule."},
+{q:"What is the value of base ratio for humans?",o:["0.93","1.55","1.21","1.65"],a:1,e:"The expected answer for this question is 1.55."},
+{q:"A phosphate group is linked to ____(a)___ a nucleoside through __(b)__ linkage to form a corresponding nucleotide.",o:["(a) —5'—OH; (b) —N—glycosidic","(a) —3'—OH; (b) —phosphodiester","(a) —3'—OH; (b) —hydrogen bond","(a) —5'—OH; (b) —phosphoester"],a:3,e:"A phosphate group can be esterified to the 5′-OH of a nucleoside to form a nucleotide through a phosphoester linkage."},
+{q:"Chargaff's rule is applicable to ________",o:["single stranded DNA and RNA","single stranded RNA","double stranded DNA","single stranded DNA"],a:2,e:"Chargaff's complementary base relationships apply to double-stranded DNA."},
+{q:"Which of the following enzymes if present in a medium affect the transformation in bacteria?",o:["DNAase","RNAase","Protease","More than one option is correct"],a:0,e:"DNase destroys DNA. DNA is the transforming principle in the bacterial transformation experiment."},
+{q:"If the base sequence of one strand of DNA is GAT TAG CAT, what shall be the sequence of its complementary strand?",o:["CAT CTG ATC","GTA ATC CTG","ATC GTA CTG","CTA ATC GTA"],a:3,e:"Using G↔C, A↔T and T↔A gives CTA ATC GTA."},
+{q:"A DNA strand is directly involved in the synthesis of all the following except",o:["another DNA","tRNA and mRNA","rRNA","protein"],a:3,e:"DNA directly serves as a template for DNA replication and RNA synthesis. Protein is synthesized through RNA during translation."},
+{q:"In a DNA, if the percentage of thymine is 20% then what will be percentage of guanine?",o:["20%","40%","30%","60%"],a:2,e:"If T=20%, A=20%. Therefore G+C=60%, and because G=C, G=30%."},
+{q:"Antiparallel strands of DNA molecule means that",o:["one strand turns clockwise","one strand turns anti-clockwise","the phosphate groups of two DNA strands, at their ends, share the same position","the phosphate groups at the start of two DNA strands are in opposite position (pole)"],a:3,e:"The two DNA strands run in opposite directions: one 5′→3′ and the other 3′→5′."},
+{q:"Consider the following statements:<br><br>a. Backbone of helix is made up of sugar-phosphate<br>b. Parallel polarity of two chains<br>c. Adenine binds to guanine by double hydrogen bonds.<br>d. The two chains are coiled in right-handed fashion<br>e. Pitch of the helix is 3.4 Å.<br>f. Presence of roughly 10 base pairs in each turn.<br><br>The true statements with respect to B-DNA are;",o:["a, c and d","a, d and f","b, c and f","b, d and e"],a:1,e:"B-DNA has a sugar-phosphate backbone, is right-handed, and has roughly 10 base pairs per turn. Its pitch is about 34 Å, not 3.4 Å."}
+];
+let i=0,answers=[],name="",seconds=600,timer=null;
+function startQuiz(){name=document.getElementById("studentName").value.trim();if(!name){alert("Please enter the student's name before starting.");return}i=0;answers=Array(questions.length).fill(null);seconds=600;document.getElementById("start").classList.add("hidden");document.getElementById("resultSection").classList.add("hidden");document.getElementById("quizSection").classList.remove("hidden");document.getElementById("studentDisplay").textContent="Student: "+name;startTimer();render()}
+function render(){const q=questions[i];document.getElementById("questionNumber").textContent=`Question ${i+1} of ${questions.length}`;document.getElementById("questionText").innerHTML=q.q;const box=document.getElementById("options");box.innerHTML="";q.o.forEach((x,n)=>{const b=document.createElement("button");b.className="option"+(answers[i]===n?" selected":"");b.textContent=String.fromCharCode(65+n)+". "+x;b.onclick=()=>{answers[i]=n;render()};box.appendChild(b)});document.getElementById("prev").disabled=i===0;document.getElementById("next").textContent=i===questions.length-1?"Submit Test ✓":"Next →";document.getElementById("progress").style.width=((i+1)/questions.length*100)+"%"}
+function nextQuestion(){if(answers[i]===null&&!confirm("You have not selected an answer. Continue anyway?"))return;if(i<questions.length-1){i++;render()}else finish()}
+function previousQuestion(){if(i>0){i--;render()}}
+function finish(){stopTimer();let c=0,w=0,u=0;questions.forEach((q,n)=>{if(answers[n]===null)u++;else if(answers[n]===q.a)c++;else w++});const neg=w*.20,score=c-neg,pct=score/questions.length*100;document.getElementById("quizSection").classList.add("hidden");document.getElementById("resultSection").classList.remove("hidden");document.getElementById("resultStudent").textContent="Student: "+name;document.getElementById("scoreText").textContent=score.toFixed(2)+" / 10";document.getElementById("percentageText").textContent="Percentage: "+pct.toFixed(2)+"%";document.getElementById("correctCount").textContent=c;document.getElementById("incorrectCount").textContent=w;document.getElementById("unansweredCount").textContent=u;document.getElementById("negativeMarks").textContent="-"+neg.toFixed(2);document.getElementById("resultMessage").textContent=pct>=80?"Excellent performance! 🎉":pct>=60?"Good performance. Keep practicing. 👍":pct>=40?"Keep practicing and review the explanations. 📖":"Review the chapter carefully and try again. 💪";const r=document.getElementById("review");r.innerHTML="";questions.forEach((q,n)=>{const correct=answers[n]===q.a,un=answers[n]===null,item=document.createElement("div");item.className="review-item "+(un?"unanswered":correct?"correct":"wrong");const ya=un?"Not answered":q.o[answers[n]],m=un?"0.00":correct?"+1.00":"-0.20";item.innerHTML=`<b>${n+1}. ${q.q}</b><br>${correct?"✅ Correct":un?"⚪ Unanswered":"❌ Incorrect"}<br>Your answer: ${ya}<br>Correct answer: ${q.o[q.a]}<br>Marks: <b>${m}</b><br><span class="small">${q.e}</span>`;r.appendChild(item)})}
+function restartQuiz(){document.getElementById("resultSection").classList.add("hidden");startQuiz()}
+function goHome(){stopTimer();document.getElementById("resultSection").classList.add("hidden");document.getElementById("quizSection").classList.add("hidden");document.getElementById("start").classList.remove("hidden");document.getElementById("studentName").value=""}
+function startTimer(){stopTimer();updateTimer();timer=setInterval(()=>{seconds--;updateTimer();if(seconds<=0){stopTimer();alert("Time is up. Your test will now be submitted.");finish()}},1000)}
+function stopTimer(){if(timer){clearInterval(timer);timer=null}}
+function updateTimer(){document.getElementById("timer").textContent=String(Math.floor(seconds/60)).padStart(2,"0")+":"+String(seconds%60).padStart(2,"0")}
+</script>
+</body>
+</html>
